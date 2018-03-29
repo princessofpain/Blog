@@ -110,7 +110,7 @@ body {
 	margin-bottom: 65px;
 }
 
-#search-input, #email-input, #send-comment  {
+#search-input, #email-input, #send-comment {
 	margin-bottom: 10px;
 	padding-left: 5px;
 	height: 30px;
@@ -118,7 +118,7 @@ body {
 	width: 100%;
 }
 
-#search-button, #subscribe-button {
+#search-button, #subscribe-button, #contact-button {
 	width: 80px;
 	height: 25px;
 	border-radius: 5px;
@@ -156,6 +156,12 @@ body {
 
 .popular-entries {
 	margin-top: 80px;
+}
+
+.popular-entries h1 {
+	padding-left: 48px;
+	font-size: 14pt;
+	margin-bottom: 10px;
 }
 
 .popular-entries ul {

@@ -12,7 +12,8 @@
 	<body>
 		<main class="main">
 			<header class="header">
-				<h1>This is my awesome test blog!</h1>
+				<a id="top"></a>
+				<h1>This is my awesome </br> test blog!</h1>
 			</header>
 
 
@@ -24,12 +25,11 @@
 					<a href="/subpages/allArticles.html">All Articles</a>
 				</div>
 				<div class="social-media">
-					<a href=""><img src="https://newsdiaryonline.com/wp-content/uploads/2017/10/Facebook.png" alt="Facebook"></a>
-					<a href=""><img src="https://www.chitaitext.ru/upload/medialibrary/bb5/google-plus.png" alt="Google+"></a>
-					<a href=""><img src="http://sguru.org/wp-content/uploads/2018/01/instagram-colourful-icon.png" alt="Instagram"></a>
-					<a href=""><img src="https://images-eu.ssl-images-amazon.com/images/I/41K39f7BXZL.png" alt="Pinterest"></a>
-					<a href=""><img src="https://www.rss-readers.org/wp-content/uploads/rss-feed.png" alt="RSS"></a>
-					<a href=""><img src="http://www.cervignanobaseball.it/website/images/unnamed.png" alt="Twitter"></a>
+					<a target="_blank" href="https://www.facebook.com/"><img src="https://newsdiaryonline.com/wp-content/uploads/2017/10/Facebook.png" alt="Facebook"></a>
+					<a target="_blank" href="https://plus.google.com/discover?hl=de"><img src="https://www.chitaitext.ru/upload/medialibrary/bb5/google-plus.png" alt="Google+"></a>
+					<a target="_blank" href="https://www.instagram.com/?hl=de"><img src="http://sguru.org/wp-content/uploads/2018/01/instagram-colourful-icon.png" alt="Instagram"></a>
+					<a target="_blank" href="https://www.pinterest.de/"><img src="https://images-eu.ssl-images-amazon.com/images/I/41K39f7BXZL.png" alt="Pinterest"></a>
+					<a target="_blank" href="https://twitter.com/"><img src="http://www.cervignanobaseball.it/website/images/unnamed.png" alt="Twitter"></a>
 				</div>
 			</nav>
 
@@ -73,13 +73,55 @@
 			<footer>
 				<div class="footer-links">
 					<p>©2018 Chilja Speransky</p>
-					<a href="" class="footer-link">Back to top</a>
-					<a href="" class="footer-link">Contact</a>
-					<a href="" class="footer-link">Lorem</a>
-					<a href="" class="footer-link">Lorem</a>
+					<a href="#top" class="footer-link">Back to top</a>
+					<a href="/subpages/contact.html" class="footer-link">Contact</a>
+					<a href="/subpages/footer1.html" class="footer-link">Lorem</a>
 				</div>
 			</footer>
 		</main>
+
+		<aside class="sidebar">
+			<section class="search-function">
+				<input type="search" id="search-input" placeholder="search me">
+				<input type="submit" value="Search" id="search-button">
+			</section>
+
+			<section class="about-us">
+				<h1>About me</h1>
+				<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</p>
+				<img src="http://www.katrin-hanusch.de/files/gimgs/32_32_thatsme.jpg" alt="That´s me!">
+				<a href="/subpages/about.html">More about me</a>
+			</section>
+
+			<section class="contact-email">
+				<h1>Subscribe via email</h1>
+				<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>
+				<input type"email" id="email-input" placeholder="type email adress">
+				<input type="submit" value="Subscribe" id="subscribe-button">
+			</section>
+
+			<section class="popular-entries">
+				<h1>Popular entries</h1>
+				<ul>
+					<li>
+						<img src="https://wikispeicher.ch/w/images/6/6c/Beispielbild.jpg" alt="thumbnail">
+						<a href="/subpages/article3.html">Lorem</a>
+					</li>
+					<li>
+						<img src="https://wikispeicher.ch/w/images/6/6c/Beispielbild.jpg" alt="thumbnail">
+						<a href="/subpages/article6.html">Lorem</a>
+					</li>
+					<li>
+						<img src="https://wikispeicher.ch/w/images/6/6c/Beispielbild.jpg" alt="thumbnail">
+						<a href="/subpages/article2.html">Lorem</a>
+					</li>
+					<li>
+						<img src="https://wikispeicher.ch/w/images/6/6c/Beispielbild.jpg" alt="thumbnail">
+						<a href="/subpages/article7.html">Lorem</a>
+					</li>
+				</ul>
+			</section>
+		</aside>
 	</body>
 
 </html>

@@ -1,12 +1,3 @@
-.main{
-	width: 40%;
-	margin: 0px auto 10px;
-}
-
-.nav {
-	margin-bottom: 50px;
-}
-
 .blog-entry img {
 	margin-bottom: 15px;
 	margin-top: 15px;
@@ -32,9 +23,9 @@
 	font-size: 16pt;
 }
 
-#comment-text {
+#comment-text, #contact-text {
 	margin-top: 15px;
-	width: 100%;
+	width: 96%;
 	height: 150px;
 	border-radius: 5px;
 	padding: 8px;
@@ -93,6 +84,8 @@
 
 .article-list li {
 	margin-bottom:  45px;
+	background-color: #F0F0E8;
+	padding: 20px;
 }
 
 .article-list a {
@@ -105,4 +98,25 @@
 	font-family: 'Lato', sans-serif;
 	font-style: italic;
 	font-size: 12pt;
+}
+
+.contact {
+	background-color: #F0F0E8;
+	padding:  30px;
+	border-radius: 5px;
+	width: 90%;
+}
+
+#contact-button {
+	margin-top: 15px;
+}
+
+#contact-data {
+	margin-top: 25px;
+	margin-bottom: 25px;
+}
+
+#select-occasion {
+	margin-top: 45px;
+	margin-bottom: 15px;
 }

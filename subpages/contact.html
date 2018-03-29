@@ -33,21 +33,34 @@
 				</div>
 			</nav>
 
-			<section class="about">
-				<article>
-					<h1>Lorem ipsum dolor sit amet</h1>
-					<p class="summary">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa.</p>
-					<img src="http://www.katrin-hanusch.de/files/gimgs/32_32_thatsme.jpg" alt="That´s me!">
-					<p class="descripton">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a.</p>
-				</article>
-
-				<section class="write-email">
-					<a href="mailto:magiclanzelot@gmx.net?subject=BlogContact">Send me a Mail!</a>
+			<section class="contact">
+				<section class="contac-form">
+					<h1>Contact me</h1>
+					<div id="contact-data">
+						<label for="contact-name">Name:</label>
+						<input type="text" id="contact-name">
+						<label for="contact-email">E-mail:</label>
+						<input type="email" id="contact-email">
+					</div>
+					<div id="receive-newsletter">
+						<input type="checkbox" id="checkbox-newsletter" checked>
+						<label for="checkbox-newsletter">Receive the newsletter</label>
+					</div>
+					<select id="select-occasion">
+						<option value="" disabled selected>Choose an option</option>
+						<option value="personal-question">Question about me</option>
+						<option value="article-question">Question relating to an article</option>
+						<option value="webpage-question">Question relating to the web page itself</option>
+						<option value="issue">Issues</option>
+						<option value="contribution">Contribution</option>
+					</select>
+					<textarea placeholder="Write your message here" id="contact-text"></textarea>
+					<input type="submit" value="Submit" id="contact-button"/>
 				</section>
+			</section>
 
-				<section class="go-back">
-					<a href="/index.html">Go back</a>
-				</section>
+			<section class="go-back">
+				<a href="/index.html">Go back</a>
 			</section>
 
 			<footer>
@@ -63,7 +76,7 @@
 		<aside class="sidebar">
 			<section class="search-function">
 				<input type="search" id="search-input" placeholder="search me">
-				<input type="submit" value="Search" id="search-button">
+				<input type="submit" value="search-input" id="search-button">
 			</section>
 
 			<section class="about-us">
