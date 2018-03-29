@@ -9,6 +9,7 @@ gulp.task('default', ['styles'], function() {
 	gulp.watch('css/**/*.css', ['styles']);
 	// gulp.watch('lesson-1-async-w-xhr/app.js', ['lint']);
 	gulp.watch('index.html').on('change', browserSync.reload);
+	gulp.watch('subpages/**/*.html').on('change', browserSync.reload);
 
 	browserSync.init({
 		server:'.'
