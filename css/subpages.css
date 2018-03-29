@@ -1,122 +1,122 @@
 .blog-entry img {
-	margin-bottom: 15px;
-	margin-top: 15px;
+  margin-bottom: 15px;
+  margin-top: 15px;
 }
 
 .summary {
-	text-align: left;
-	margin-bottom: 10px;
+  text-align: left;
+  margin-bottom: 10px;
 }
 
 .description {
-	margin-top: 10px;
-	margin-bottom: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .comments {
-	display: flex;
-	flex-wrap: wrap;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .comments h1 {
-	margin-bottom: 5px;
-	font-size: 16pt;
+  margin-bottom: 5px;
+  font-size: 16pt;
 }
 
 #comment-text, #contact-text {
-	margin-top: 15px;
-	width: 96%;
-	height: 150px;
-	border-radius: 5px;
-	padding: 8px;
+  margin-top: 15px;
+  width: 96%;
+  height: 150px;
+  border-radius: 5px;
+  padding: 8px;
 }
 
 #send-comment {
-	margin-top: 10px;
-	width: 20%;
+  margin-top: 10px;
+  width: 20%;
 }
 
 .go-back {
-	margin-top:  30px;
+  margin-top:  30px;
 }
 
 .go-back a {
-	font-size: 12pt;
-	color: #808080;
+  font-size: 12pt;
+  color: #808080;
 }
 
 .about img {
-	width: 100%;
+  width: 100%;
 }
 
 .write-email {
-	margin-top: 30px;
+  margin-top: 30px;
 }
 
 .write-email a {
-	font-size: 14pt;
-	color: #000;
-	text-decoration: none;
+  font-size: 14pt;
+  color: #000;
+  text-decoration: none;
 }
 
 .write-email a:hover {
-	color: #8942f4;
+  color: #8942f4;
 }
 
 .gallery-container {
-	display: flex;
-	flex-wrap: wrap;
-	width: 100%;
-	justify-content: center;
-	margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: center;
+  margin-top: 20px;
 }
 
 .gallery-container img {
-	width: 28%;
-	height: 10%;
-	margin: 2%;
+  width: 28%;
+  height: 10%;
+  margin: 2%;
 }
 
 .article-list {
-	list-style-type: none;
-	padding-left: 5px;
+  list-style-type: none;
+  padding-left: 5px;
 }
 
 .article-list li {
-	margin-bottom:  45px;
-	background-color: #F0F0E8;
-	padding: 20px;
+  margin-bottom:  45px;
+  background-color: #F0F0E8;
+  padding: 20px;
 }
 
 .article-list a {
-	font-size: 16pt;
-	color: #000;
-	text-decoration: none;
+  font-size: 16pt;
+  color: #000;
+  text-decoration: none;
 }
 
 .article-list p {
-	font-family: 'Lato', sans-serif;
-	font-style: italic;
-	font-size: 12pt;
+  font-family: 'Lato', sans-serif;
+  font-style: italic;
+  font-size: 12pt;
 }
 
 .contact {
-	background-color: #F0F0E8;
-	padding:  30px;
-	border-radius: 5px;
-	width: 90%;
+  background-color: #F0F0E8;
+  padding:  30px;
+  border-radius: 5px;
+  width: 90%;
 }
 
 #contact-button {
-	margin-top: 15px;
+  margin-top: 15px;
 }
 
 #contact-data {
-	margin-top: 25px;
-	margin-bottom: 25px;
+  margin-top: 25px;
+  margin-bottom: 25px;
 }
 
 #select-occasion {
-	margin-top: 45px;
-	margin-bottom: 15px;
+  margin-top: 45px;
+  margin-bottom: 15px;
 }
