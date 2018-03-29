@@ -1,0 +1,186 @@
+body {
+	display: flex;
+	font-family: 'Lato';
+}
+
+.main{
+	width: 40%;
+	margin: 0px 25px 10px auto;
+}
+
+.header h1 {
+	font-family: 'Indie Flower';
+	font-size:  44pt;
+	text-align: center;
+	padding:  15px;
+}
+
+.nav {
+	width: 100%;
+	margin-bottom: 75px;
+	display: flex;
+	font-size: 13pt;
+	align-items: stretch;
+}
+
+.menu .social-media {
+	flex-direction: row;
+
+}
+
+.menu a {
+	width: 100%;
+	margin: 0px 2%;
+	color: #808080;
+	text-decoration:  none;
+}
+
+.menu {
+	width: 60%;
+}
+
+.social-media img {
+	width:  20px;
+	padding-left: 5px;
+}
+
+.social-media {
+	margin: 0px 2% 0px auto;
+}
+
+.blog-entries img {
+	width:  100%;
+}
+
+.blog-entries h1 {
+	font-size: 20pt;
+	margin-top: 35px;
+}
+
+.summary {
+	font-family: 'Lato', sans-serif;
+	font-style: italic;
+	text-align: center;
+	font-size: 12pt;
+}
+
+.description {
+	font-size:  11pt;
+	line-height: 1.5;
+	margin-bottom: 2px;
+}
+
+.read-more {
+	color: #808080;
+	font-size: 10pt;
+	font-style: italic;
+}
+
+.older-entries {
+	margin-top: 30px;
+}
+
+.older-entries a {
+	font-size: 14pt;
+	color: #808080;
+}
+
+.footer-links {
+	display: flex;
+	align-items: baseline;
+	margin-top: 40px;
+	font-size:  12pt;
+}
+
+.footer-link {
+	color: #808080;
+	margin-left: 25px;
+}
+
+.sidebar {
+	display: relative;
+	float: right;
+	width:  15%;
+	margin: 276px auto 0px 0px;
+	font-size: 10pt;
+}
+
+.search-function {
+	margin-bottom: 30px;
+}
+
+#search-input, #email-input {
+	margin-bottom: 10px;
+	padding-left: 5px;
+	height: 30px;
+	border-radius: 5px;
+	width: 100%;
+}
+
+#search-button, #subscribe-button {
+	width: 80px;
+	height: 25px;
+	border-radius: 5px;
+}
+
+.about-us {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.about-us h1 {
+	width:  100%;
+	margin-bottom: 10px;
+}
+
+.about-us p {
+	width: 65%;
+	margin-top:  0px;
+}
+
+.about-us img {
+	width:  35%;
+	height: 35%;
+	margin-top: 2px;
+}
+
+.about-us a {
+	color: #808080;
+	font-style: italic;
+}
+
+.contact-email {
+	margin-top: 80px;
+}
+
+.popular-entries {
+	margin-top: 80px;
+}
+
+.popular-entries ul {
+	list-style-type: none;
+	padding-left: 5px;
+}
+
+.popular-entries li {
+	margin-bottom: 40px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.popular-entries a {
+	color: #000;
+	text-decoration: none;
+	font-size: 12pt;
+}
+
+.popular-entries img {
+	width: 30%;
+	margin-right: 20px;
+}
+
+
+
+
+
