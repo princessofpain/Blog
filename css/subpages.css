@@ -21,6 +21,7 @@
 .comments h1 {
   margin-bottom: 5px;
   font-size: 16pt;
+  width: 100%;
 }
 
 #comment-text, #contact-text {
@@ -34,6 +35,31 @@
 #send-comment {
   margin-top: 10px;
   width: 20%;
+}
+
+#comment-name {
+  padding: 8px;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+
+.comment {
+  width: 98%;
+}
+
+.push-comment {
+  border:  1px solid #D6E0EB;
+  padding: 5px;
+  font-size: 10pt;
+  border-radius: 5px;
+  line-height: 1.6;
+}
+
+.push-comment-name {
+  width: 200px;
+  margin-top: 30px;
+  font-size: 12pt;
+  font-style:  bold;
 }
 
 .go-back {
@@ -107,6 +133,10 @@
   width: 90%;
 }
 
+#contact-name, #contact-email {
+  padding-left: 5px;
+}
+
 #contact-button {
   margin-top: 15px;
 }
@@ -120,3 +150,4 @@
   margin-top: 45px;
   margin-bottom: 15px;
 }
+

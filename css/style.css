@@ -99,10 +99,9 @@ body {
 }
 
 .sidebar {
-  display: relative;
   float: right;
   width:  15%;
-  margin: 40% auto 0px 0px;
+  margin: 17.5% auto 0px 0px; /* media query small:  37% */
   font-size: 10pt;
 }
 
