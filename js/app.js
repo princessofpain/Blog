@@ -5,6 +5,7 @@ $(function() {
     //the emails array is used for sending the newsletter
     emails: [],
     contacts:[],
+    comments: [],
 
     contactData: function(name, email, occasion, message) {
       this.name = name;
@@ -30,10 +31,22 @@ $(function() {
       if(model.emails.includes(email) === false) {
         model.emails.push(email);
       }
+    },
+
+    setLocalStorageForComments: function(comment, name, number) {
+      localStorage.setItem(`comment ${number}`, comment);
+      localStorage.setItem(`name ${number}`, name);
+    },
+
+    getLocalStorageData: function() {
+      for(let i = 0; i < localStorage.length; i++) {
+        model.comments.push(localStorage.getItem(localStorage.key(i)));
+      }
+      control.setStorageData(model.comments);
     }
   };
 
-  // build a bridge betweem model and view
+  // build a bridge between model and view
   var control = {
     init: function() {
       view.init();
@@ -45,17 +58,31 @@ $(function() {
 
     handleContactData: function(name, email, checkbox, occasion, message) {
       model.setContactData(name, email, checkbox, occasion, message);
+    },
+
+    handleComment: function(comment, name, number) {
+      model.setCommentData(comment, name, number);
+    },
+
+    getSafedData: function() {
+      model.getLocalStorageData();
+    },
+
+    setStorageData: function(storedData) {
+      view.appendStorageData(storedData);
     }
   };
 
   // here is everything related to the ui
-  var view = { 
+  var view = {
 
     init: function() {
       $('#subscribe-button').click(view.submitEmail);
       $('#search-button').click(view.submitSearch);
       $('#contact-button').click(view.submitContactData);
-      $('#comment-button').click(view.submitComment);
+      $('#send-comment').click(view.submitComment);
+
+      control.getSafedData();
     },
 
     submitEmail: function() {
@@ -70,7 +97,7 @@ $(function() {
     submitContactData: function() {
       const occasion = $('#select-occasion option:selected');
 
-      control.handleContactData($('#contact-name').val(), $('#contact-email').val(), 
+      control.handleContactData($('#contact-name').val(), $('#contact-email').val(),
         $('#checkbox-newsletter'), occasion, $('#contact-text'));
 
       $('#contact-name').val('');
@@ -82,7 +109,27 @@ $(function() {
     },
 
     submitComment: function() {
+      const comment = $('#comment-text').val();
+      const name = $('#comment-name').val();
+      $('.go-back').prepend(`<div class="comment"><p class="push-comment-name">${name}</p><p class="push-comment">${comment}</p></div>`);
 
+      $('#comment-text').val('');
+      $('#comment-name').val('');
+
+      let numberOfComments;
+      numberOfComments++;
+
+      control.handleComment(comment, name, numberOfComments);
+    },
+
+    appendStorageData: function(storedData) {
+      for(let i = 0; i < storedData.length; i++) {
+        if(i < 2) {
+          $('.go-back').prepend(`<div class="comment"><p class="push-comment-name">${storedData[i-1]}</p><p class="push-comment">${storedData[i]}</p></div>`);
+        } else {
+          $('.go-back').prepend(`<div class="comment"><p class="push-comment-name">${storedData[i-1]}</p><p class="push-comment">${storedData[i]}</p></div>`);
+        }
+      }
     }
   };
   control.init();
