@@ -5,7 +5,6 @@ $(function() {
     //the emails array is used for sending the newsletter
     emails: [],
     contacts:[],
-    comments: [],
 
     contactData: function(name, email, occasion, message) {
       this.name = name;
@@ -33,16 +32,22 @@ $(function() {
       }
     },
 
-    setLocalStorageForComments: function(comment, name, number) {
-      localStorage.setItem(`comment ${number}`, comment);
-      localStorage.setItem(`name ${number}`, name);
+    setLocalStorageData: function(comment, name, title) {
+      let numOfComments;
+      for(let i = 0; i < localStorage.length; i++) {
+        if((i+1) === localStorage.length) {
+          numOfComments = i + 2;
+        }
+      }
+
+      localStorage.setItem(`${numOfComments} c`, comment);
+      localStorage.setItem(`${numOfComments} n`, name);
+      localStorage.setItem(`${numOfComments} t`, title);
     },
 
     getLocalStorageData: function() {
-      for(let i = 0; i < localStorage.length; i++) {
-        model.comments.push(localStorage.getItem(localStorage.key(i)));
-      }
-      control.setStorageData(model.comments);
+      const storedData = localStorage;
+      control.setStorageData(storedData);
     }
   };
 
@@ -60,8 +65,8 @@ $(function() {
       model.setContactData(name, email, checkbox, occasion, message);
     },
 
-    handleComment: function(comment, name, number) {
-      model.setCommentData(comment, name, number);
+    handleComment: function(comment, name, title) {
+      model.setLocalStorageData(comment, name, title);
     },
 
     getSafedData: function() {
@@ -93,7 +98,7 @@ $(function() {
     submitSearch: function() {
       // const searchValue = $('#search-input');
 
-      // const searchResult = $('body').text().search(searchValue);
+      // const searchResult = $('body').text.search(searchValue);
     },
 
     submitContactData: function() {
@@ -113,20 +118,25 @@ $(function() {
     submitComment: function() {
       const comment = $('#comment-text').val();
       const name = $('#comment-name').val();
+      const title = $('title').text();
+
       $('.go-back').prepend(`<div class="comment"><p class="push-comment-name">${name}</p><p class="push-comment">${comment}</p></div>`);
+
+      control.handleComment(comment, name, title);
 
       $('#comment-text').val('');
       $('#comment-name').val('');
-
-      let numberOfComments;
-      numberOfComments++;
-
-      control.handleComment(comment, name, numberOfComments);
     },
 
     appendStorageData: function(storedData) {
       for(let i = 0; i < storedData.length; i++) {
-        $('.go-back').prepend(`<div class="comment"><p class="push-comment-name">${storedData[i-1]}</p><p class="push-comment">${storedData[i]}</p></div>`);
+        const comment = storedData.getItem(`${i} c`);
+        const name = storedData.getItem(`${i} n`);
+        const title = storedData.getItem(`${i} t`);
+
+        if(title === $('title').text()) {
+          $('.go-back').prepend(`<div class="comment"><p class="push-comment-name">${name}</p><p class="push-comment">${comment}</p></div>`);
+        }
       }
     }
   };
