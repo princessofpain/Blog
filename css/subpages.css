@@ -151,3 +151,14 @@
   margin-bottom: 15px;
 }
 
+#login-name, #login-password {
+  margin-bottom: 10px;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+#admin-login-button {
+  margin-top: 10px;
+  margin-bottom: 50px;
+}
+
