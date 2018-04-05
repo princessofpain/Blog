@@ -48,6 +48,19 @@ $(function() {
     getLocalStorageData: function() {
       const storedData = localStorage;
       control.setStorageData(storedData);
+    },
+
+    setLogin: function(name, password) {
+      localStorage.setItem(name, `${name}`);
+      localStorage.setItem(password, `${password}`);
+    },
+
+    getLogin: function() {
+      let check = false;
+      if(localStorage.getItem('name') === 'admin' && localStorage.getItem('password') === '12345') {
+        check = true;
+      }
+      control.checkLogin(check);
     }
   };
 
@@ -75,6 +88,16 @@ $(function() {
 
     setStorageData: function(storedData) {
       view.appendStorageData(storedData);
+    },
+
+    keepLogin: function(name, password) {
+      model.setLogin(name, password);
+    },
+
+    checkLogin: function(check) {
+      if(check === true) {
+        view.displayAdmin;
+      }
     }
   };
 
@@ -86,8 +109,11 @@ $(function() {
       $('#search-button').click(view.submitSearch);
       $('#contact-button').click(view.submitContactData);
       $('#send-comment').click(view.submitComment);
+      $('#admin-login-button').click(view.login);
+      $('#admin-logout-button').click(view.logout);
 
       control.getSafedData();
+      control.checkLogin();
     },
 
     submitEmail: function() {
@@ -111,7 +137,7 @@ $(function() {
       $('#contact-email').val('');
       $('#checkbox-newsletter').checked;
       $('#select-occasion option').removeAttr('selected');
-      $('#select-occasion option[value="default"]').attr('selected', true);
+      $('#select-occasion option[value='default']').attr('selected', true);
       $('#contact-text').val('');
     },
 
@@ -120,7 +146,7 @@ $(function() {
       const name = $('#comment-name').val();
       const title = $('title').text();
 
-      $('.go-back').prepend(`<div class="comment"><p class="push-comment-name">${name}</p><p class="push-comment">${comment}</p></div>`);
+      $('.go-back').prepend(`<div class='comment'><p class='push-comment-name'>${name}</p><p class='push-comment'>${comment}</p></div>`);
 
       control.handleComment(comment, name, title);
 
@@ -135,10 +161,24 @@ $(function() {
         const title = storedData.getItem(`${i} t`);
 
         if(title === $('title').text()) {
-          $('.go-back').prepend(`<div class="comment"><p class="push-comment-name">${name}</p><p class="push-comment">${comment}</p></div>`);
+          $('.go-back').prepend(`<div class='comment'><p class='push-comment-name'>${name}</p><p class='push-comment'>${comment}</p></div>`);
         }
       }
-    }
+    },
+
+    login: function() {
+      const name = $('#login-name').val();
+      const password = $('#login-password').val();
+      control.keepLogin(name, password);
+
+      control.checkLogin();
+    },
+
+    displayAdmin: function() {
+      $('.admin').css('display', 'block');
+    },
+
+    logout: function() {}
   };
   control.init();
 });
