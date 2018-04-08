@@ -51,16 +51,18 @@ $(function() {
     },
 
     setLogin: function(name, password) {
-      localStorage.setItem(name, `${name}`);
-      localStorage.setItem(password, `${password}`);
+      localStorage.setItem('username', name);
+      localStorage.setItem('key', password);
     },
 
     getLogin: function() {
-      let check = false;
-      if(localStorage.getItem('name') === 'admin' && localStorage.getItem('password') === '12345') {
-        check = true;
+      const username = localStorage.getItem('username');
+      const key = localStorage.getItem('key');
+      if(username === 'admin' && key === '12345') {
+        control.loginTrue();
+      } else {
+        control.loginFalse();
       }
-      control.checkLogin(check);
     }
   };
 
@@ -94,10 +96,16 @@ $(function() {
       model.setLogin(name, password);
     },
 
-    checkLogin: function(check) {
-      if(check === true) {
-        view.displayAdmin;
-      }
+    checkLogin: function() {
+      model.getLogin();
+    },  
+
+    loginTrue: function() {
+      view.displayAdmin();
+    },
+
+    loginFalse: function() {
+      view.hideAdmin();
     }
   };
 
@@ -110,7 +118,8 @@ $(function() {
       $('#contact-button').click(view.submitContactData);
       $('#send-comment').click(view.submitComment);
       $('#admin-login-button').click(view.login);
-      $('#admin-logout-button').click(view.logout);
+      $('#admin-logout-button').click(view.hideAdmin);
+      $('#admin-button').click(view.displayAdminFunctions);
 
       control.getSafedData();
       control.checkLogin();
@@ -137,7 +146,7 @@ $(function() {
       $('#contact-email').val('');
       $('#checkbox-newsletter').checked;
       $('#select-occasion option').removeAttr('selected');
-      $('#select-occasion option[value='default']').attr('selected', true);
+      $('#select-occasion option[value="default"]').attr('selected', true); 
       $('#contact-text').val('');
     },
 
@@ -170,15 +179,50 @@ $(function() {
       const name = $('#login-name').val();
       const password = $('#login-password').val();
       control.keepLogin(name, password);
-
       control.checkLogin();
+      view.wrongLogIn();
     },
 
     displayAdmin: function() {
       $('.admin').css('display', 'block');
     },
 
-    logout: function() {}
+    wrongLogIn: function() {
+      const adminDisplayed = $('.admin').css('display');
+      if(!(adminDisplayed === 'block')){
+        $('.login').append('<p>Wrong username or password.</p>');
+      }
+    },
+
+    hideAdmin: function() {
+      $('.admin').css('display', 'none');
+    },
+
+    displayAdminFunctions: function() {
+      if($('#admin-delete').length === 0) {
+        $('.admin').append('<button id="admin-delete">Delete comment(s)</button>');
+        $('#admin-delete').click(view.deleteComments);
+
+        for(let i = 0; i < $('.comment').length; i++) {
+          $('.comment').attr('id', `${i}`);
+          $('.push-comment-name').prepend(`<input type="radio" id="${i}">`);
+        } 
+      } else {
+        $('#admin-delete').remove();
+        $('input:radio').remove();
+      }
+    },
+
+    deleteComments: function() {
+      const inputs = $('input:radio').length;
+      console.log(inputs);
+      for(let i = 0; i < inputs; i++) {
+        const radioButtonChecked = $(`${inputs[i]}:checked`);
+        console.log(radioButtonChecked);
+        radioButtonChecked.remove();
+        $(`.comment#${i}`).remove();
+      }
+    }
   };
   control.init();
 });

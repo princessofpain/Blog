@@ -118,7 +118,7 @@ body {
 }
 
 #search-button, #subscribe-button, #contact-button, #admin-login-button,
-	#admin-logout-button, #admin-button {
+	#admin-logout-button, #admin-button, #admin-delete {
   width: 80px;
   height: 25px;
   border-radius: 5px;
@@ -131,6 +131,7 @@ body {
 
 .admin {
 	display: none;
+  margin-top: 30px;
 }
 
 .about-us {
