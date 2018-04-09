@@ -15,7 +15,8 @@ module.exports = {
         "semi": [
             "error",
             "always"
-        ]
+        ],
+        "no-console": 1,
     },
     "env": {
         "browser": true,
@@ -24,4 +25,5 @@ module.exports = {
         "jasmine": true
     },
     "extends": "eslint:recommended",
+
 };
