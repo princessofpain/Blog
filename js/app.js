@@ -98,7 +98,7 @@ $(function() {
 
     checkLogin: function() {
       model.getLogin();
-    },  
+    },
 
     loginTrue: function() {
       view.displayAdmin();
@@ -146,7 +146,7 @@ $(function() {
       $('#contact-email').val('');
       $('#checkbox-newsletter').checked;
       $('#select-occasion option').removeAttr('selected');
-      $('#select-occasion option[value="default"]').attr('selected', true); 
+      $('#select-occasion option[value="default"]').attr('selected', true);
       $('#contact-text').val('');
     },
 
@@ -155,7 +155,7 @@ $(function() {
       const name = $('#comment-name').val();
       const title = $('title').text();
 
-      $('.go-back').prepend(`<div class='comment'><p class='push-comment-name'>${name}</p><p class='push-comment'>${comment}</p></div>`);
+      $('.comments').append(`<div class='comment'><p class='push-comment-name'>${name}</p><p class='push-comment'>${comment}</p></div>`);
 
       control.handleComment(comment, name, title);
 
@@ -170,7 +170,7 @@ $(function() {
         const title = storedData.getItem(`${i} t`);
 
         if(title === $('title').text()) {
-          $('.go-back').prepend(`<div class='comment'><p class='push-comment-name'>${name}</p><p class='push-comment'>${comment}</p></div>`);
+          $('.comments').append(`<div class='comment'><p class='push-comment-name'>${name}</p><p class='push-comment'>${comment}</p></div>`);
         }
       }
     },
@@ -196,17 +196,20 @@ $(function() {
 
     hideAdmin: function() {
       $('.admin').css('display', 'none');
+      $('input:radio').remove();
     },
 
     displayAdminFunctions: function() {
-      if($('#admin-delete').length === 0) {
+      if($('#admin-delete').length === 0 && (!($('title').text() === 'Login'))) {
         $('.admin').append('<button id="admin-delete">Delete comment(s)</button>');
         $('#admin-delete').click(view.deleteComments);
 
+        let comment = $('.comment').first();
         for(let i = 0; i < $('.comment').length; i++) {
-          $('.comment').attr('id', `${i}`);
-          $('.push-comment-name').prepend(`<input type="radio" id="${i}">`);
-        } 
+          comment.attr('id', `${i}`);
+          comment.first().prepend(`<input type="radio" id="${i}" class="radio">`);
+          comment = comment.next();
+        }
       } else {
         $('#admin-delete').remove();
         $('input:radio').remove();
@@ -214,13 +217,10 @@ $(function() {
     },
 
     deleteComments: function() {
-      const inputs = $('input:radio').length;
-      console.log(inputs);
-      for(let i = 0; i < inputs; i++) {
-        const radioButtonChecked = $(`${inputs[i]}:checked`);
-        console.log(radioButtonChecked);
-        radioButtonChecked.remove();
-        $(`.comment#${i}`).remove();
+      const inputs = $('input:radio:checked');
+
+      for(let i = 0; i < inputs.length; i++) {
+        inputs.parent().remove();
       }
     }
   };
