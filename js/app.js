@@ -33,12 +33,7 @@ $(function() {
     },
 
     setLocalStorageData: function(comment, name, title) {
-      let numOfComments;
-      for(let i = 0; i < localStorage.length; i++) {
-        if((i+1) === localStorage.length) {
-          numOfComments = i + 2;
-        }
-      }
+      let numOfComments = $('.comment').length;
 
       localStorage.setItem(`${numOfComments} c`, comment);
       localStorage.setItem(`${numOfComments} n`, name);
@@ -155,7 +150,11 @@ $(function() {
       const name = $('#comment-name').val();
       const title = $('title').text();
 
-      $('.comments').append(`<div class='comment'><p class='push-comment-name'>${name}</p><p class='push-comment'>${comment}</p></div>`);
+      if($('.comment').length === 0) {
+        $('.comments').append(`<div class='comment'><p class='push-comment-name'>${name}</p><p class='push-comment'>${comment}</p></div>`);
+      } else {
+        $('.comment:first').prepend(`<div class='comment'><p class='push-comment-name'>${name}</p><p class='push-comment'>${comment}</p></div>`);
+      }
 
       control.handleComment(comment, name, title);
 
