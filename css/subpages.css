@@ -178,3 +178,7 @@
   padding-left: 20px;
   padding-right: 40px;
 }
+
+.radio {
+ float: left;
+}

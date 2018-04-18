@@ -204,11 +204,13 @@ $(function() {
       } else if ($('#admin-delete').length === 0 && $('.admin').children().length === 2) {
         $('.admin').append('<button id="admin-delete">Delete comment(s)</button>');
         $('#admin-delete').click(view.deleteComments);
-
+        
+        let comment = $('.comment').first();
         for(let i = 0; i < $('.comment').length; i++) {
-          $('.comment').attr('id', `${i}`);
-          $('.push-comment-name').prepend(`<input type="radio" id="${i}">`);
-        } 
+          comment.attr('id', `${i}`);
+          comment.first().prepend(`<input type="radio" id="${i}" class="radio">`);
+          comment = comment.next();
+        }
       } else {
         $('#admin-delete').remove();
         $('input:radio').remove();
@@ -216,11 +218,10 @@ $(function() {
     },
 
     deleteComments: function() {
-      const inputs = $('input:radio').length;
-      for(let i = 0; i < inputs; i++) {
-        const radioButtonChecked = $(`${inputs[i]}:checked`);
-        radioButtonChecked.remove();
-        $(`.comment#${i}`).remove();
+      const inputs = $('input:radio:checked');
+
+      for(let i = 0; i < inputs.length; i++) {
+        inputs.parent().remove();
       }
     }
   };
