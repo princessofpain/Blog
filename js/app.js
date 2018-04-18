@@ -33,12 +33,7 @@ $(function() {
     },
 
     setLocalStorageData: function(comment, name, title) {
-      let numOfComments;
-      for(let i = 0; i < localStorage.length; i++) {
-        if((i+1) === localStorage.length) {
-          numOfComments = i + 2;
-        }
-      }
+      let numOfComments = $('.comment').length;
 
       localStorage.setItem(`${numOfComments} c`, comment);
       localStorage.setItem(`${numOfComments} n`, name);
@@ -98,7 +93,7 @@ $(function() {
 
     checkLogin: function() {
       model.getLogin();
-    },  
+    },
 
     loginTrue: function() {
       view.displayAdmin();
@@ -146,7 +141,7 @@ $(function() {
       $('#contact-email').val('');
       $('#checkbox-newsletter').checked;
       $('#select-occasion option').removeAttr('selected');
-      $('#select-occasion option[value="default"]').attr('selected', true); 
+      $('#select-occasion option[value="default"]').attr('selected', true);
       $('#contact-text').val('');
     },
 
@@ -155,7 +150,11 @@ $(function() {
       const name = $('#comment-name').val();
       const title = $('title').text();
 
-      $('.go-back').prepend(`<div class='comment'><p class='push-comment-name'>${name}</p><p class='push-comment'>${comment}</p></div>`);
+      if($('.comment').length === 0) {
+        $('.comments').append(`<div class='comment'><p class='push-comment-name'>${name}</p><p class='push-comment'>${comment}</p></div>`);
+      } else {
+        $('.comment:first').prepend(`<div class='comment'><p class='push-comment-name'>${name}</p><p class='push-comment'>${comment}</p></div>`);
+      }
 
       control.handleComment(comment, name, title);
 
@@ -170,7 +169,7 @@ $(function() {
         const title = storedData.getItem(`${i} t`);
 
         if(title === $('title').text()) {
-          $('.go-back').prepend(`<div class='comment'><p class='push-comment-name'>${name}</p><p class='push-comment'>${comment}</p></div>`);
+          $('.comments').append(`<div class='comment'><p class='push-comment-name'>${name}</p><p class='push-comment'>${comment}</p></div>`);
         }
       }
     },
@@ -196,6 +195,7 @@ $(function() {
 
     hideAdmin: function() {
       $('.admin').css('display', 'none');
+      $('input:radio').remove();
     },
 
     displayAdminFunctions: function() {
