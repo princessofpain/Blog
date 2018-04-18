@@ -199,7 +199,9 @@ $(function() {
     },
 
     displayAdminFunctions: function() {
-      if($('#admin-delete').length === 0) {
+      if($('title').text() === 'Login' && $('.admin').children().length === 2) {
+       $('.admin').append('<div class="no-delete-button"><p>The admin functions are only usable for deleting comments! </br> Please switch to an article and click again.</p></div>');
+      } else if ($('#admin-delete').length === 0 && $('.admin').children().length === 2) {
         $('.admin').append('<button id="admin-delete">Delete comment(s)</button>');
         $('#admin-delete').click(view.deleteComments);
 
@@ -215,10 +217,8 @@ $(function() {
 
     deleteComments: function() {
       const inputs = $('input:radio').length;
-      console.log(inputs);
       for(let i = 0; i < inputs; i++) {
         const radioButtonChecked = $(`${inputs[i]}:checked`);
-        console.log(radioButtonChecked);
         radioButtonChecked.remove();
         $(`.comment#${i}`).remove();
       }

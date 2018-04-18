@@ -172,3 +172,9 @@
   margin-bottom: 50px;
 }
 
+.no-delete-button {
+  font-size: 11pt;
+  line-height: 1.5;
+  padding-left: 20px;
+  padding-right: 40px;
+}
