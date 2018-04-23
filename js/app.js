@@ -2,23 +2,17 @@ $(function() {
 
   //storing all the data in the model
   var model = {
-    //the emails array is used for sending the newsletter
-    emails: [],
-    contacts:[],
-
-    contactData: function(name, email, occasion, message) {
-      this.name = name;
-      this.email = email;
-      this.occasion = occasion;
-      this.message = message;
-    },
-
     setContactData: function(name, email, checkbox, occasion, message){
-      model.contacts.push(new model.contactData(name, email, occasion, message));
+      const number = localStorage.length;
+      localStorage.setItem(`${number} name`, name);
+      localStorage.setItem(`${number} email`, email);
+      localStorage.setItem(`${number} newsletter`, checkbox);
+      localStorage.setItem(`${number} occasion`, occasion);
+      localStorage.setItem(`${number} message`, message);
 
       // if the checkbox was checked push email in the array for the newsletter
-      if(checkbox.checked === true) {
-        model.checkDoubleMail(email);
+      if(checkbox === 11) {
+        model.checkDoubleMail();
       }
     },
 
@@ -116,7 +110,29 @@ $(function() {
     },
 
     getStorageMessages: function() {
+      const regexpMessage = new RegExp(/\d+\smessage/);
+      const storageArray = Object.entries(localStorage);
+      let message = [];
+      let allMessages = [];
 
+      for(const item in localStorage) {
+        if(item.match(regexpMessage) != null) {
+          const localNumber = item.slice(0,1);
+          const regexpLocalNumber = new RegExp(localNumber + /\s\D+/);
+          // storageArray.forEach(function(keyValuePair) {
+          //   if(keyValuePair[0].match(regexpLocalNumber) != null) {
+          //     allMessages.push(keyValuePair);
+          //   }
+          // });
+          storageArray.forEach(function(key){
+            if(key[0].match(regexpLocalNumber) != null) {
+              message.push(key[1]);
+            }
+          });
+          allMessages.push(message);
+        }
+      }
+      control.handleMessageList(allMessages);
     }
   };
 
@@ -176,6 +192,10 @@ $(function() {
 
     handleStorageMessages() {
       model.getStorageMessages();
+    },
+
+    handleMessageList(messages) {
+      view.displayMessageList(messages);
     }
   };
 
@@ -209,10 +229,13 @@ $(function() {
     },
 
     submitContactData: function() {
-      const occasion = $('#select-occasion option:selected');
+      const occasion = $('#select-occasion option:selected').val();
+      const checkbox = $('#checkbox-newsletter:checked').length;
+      const name = $('#contact-name').val();
+      const email = $('#contact-email').val();
+      const message = $('#contact-text').val();
 
-      control.handleContactData($('#contact-name').val(), $('#contact-email').val(),
-        $('#checkbox-newsletter'), occasion, $('#contact-text'));
+      control.handleContactData(name, email, checkbox, occasion, message);
 
       $('#contact-name').val('');
       $('#contact-email').val('');
@@ -355,14 +378,13 @@ $(function() {
     },
 
     displayEmailList: function(emails) {
-      if($('.lists').children().length === 0 || (!$('.list #mails'))) {
-        $('.lists messages').remove();
-        $('.lists').append('<table id="mails"><tr><th>Emails</th></tr></table>');
+      $('#messages').remove();
+      $('#mails').remove();
+      $('.lists').append('<table id="mails"><tr><th>Emails</th></tr></table>');
 
-        emails.forEach(function(mail) {
-          $('#mails').append(`<tr><td>${mail}</td></tr>`);
-        });
-      }
+      emails.forEach(function(mail) {
+        $('#mails').append(`<tr><td>${mail}</td></tr>`);
+      });
     },
 
     displayMessages: function() {
@@ -370,14 +392,14 @@ $(function() {
     },
 
     displayMessageList: function(messages) {
-      if($('.lists').children().length === 0 || (!$('.list #messages'))) {
-        $('.lists emails').remove();
-        $('.lists').append('<table id="messages"><tr><th>Name</th><th>Email</th><th>Newsletter</th><th>Occasion</th><th>Message</th><th></th></tr></table>');
+      $('#mails').remove();
+      $('#messages').remove();
+      $('.lists').append('<table id="messages"><tr><th>Name</th><th>Email</th><th>Newsletter</th><th>Occasion</th><th>Message</th></tr></table>');
 
-        messages.forEach(function(message) {
-          $('#mails').append(`<tr><td>${message}</td></tr>`);
-        });
-      }
+      messages.forEach(function(message) {
+        // $('#messages').append(`<tr><td>${message[0]}</td><td>${message[1]}</td><td>${message[2]}</td><td>${message[3]}</td><td>${message[4]}</td></tr>`);
+        $('#messages').append(`<tr><td>${message}</td></tr>`)
+      });
     }
   };
   control.init();
