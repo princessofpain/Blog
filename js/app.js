@@ -32,13 +32,14 @@ $(function() {
       }
     },
 
-    setLocalStorageData: function(comment, name, title, date) {
+    setLocalStorageData: function(comment, name, title, date, time) {
       let numOfComments = $('.comment').length;
 
       localStorage.setItem(`${numOfComments} c`, comment);
       localStorage.setItem(`${numOfComments} n`, name);
       localStorage.setItem(`${numOfComments} t`, title);
       localStorage.setItem(`${numOfComments} d`, date);
+      localStorage.setItem(`${numOfComments} ti`, time);
     },
 
     getLocalStorageData: function() {
@@ -110,8 +111,8 @@ $(function() {
       model.setContactData(name, email, checkbox, occasion, message);
     },
 
-    handleComment: function(comment, name, title, date) {
-      model.setLocalStorageData(comment, name, title, date);
+    handleComment: function(comment, name, title, date, time) {
+      model.setLocalStorageData(comment, name, title, date, time);
     },
 
     getSafedData: function() {
@@ -192,12 +193,12 @@ $(function() {
       const time = view.calculateTime();
 
       if($('.comment').length === 0) {
-        $('.comments').append(`<div class='comment'><p class='push-comment-name'>${name}</p><p class='push-comment'>${comment}</p><p class="date">${date}</p></div>`);
+        $('.comments').append(`<div class='comment'><p class='push-comment-name'>${name}</p><p class='push-comment'>${comment}</p><p class="date">Comment posted at ${date}, ${time}</p></div>`);
       } else {
         $('.comment:first').prepend(`<div class='comment'><p class='push-comment-name'>${name}</p><p class='push-comment'>${comment}</p><p class="date">Comment posted at ${date}, ${time}</p></div>`);
       }
 
-      control.handleComment(comment, name, title, date);
+      control.handleComment(comment, name, title, date, time);
 
       $('#comment-text').val('');
       $('#comment-name').val('');
@@ -244,9 +245,10 @@ $(function() {
         const name = storedData.getItem(`${i} n`);
         const title = storedData.getItem(`${i} t`);
         const date = storedData.getItem(`${i} d`);
+        const time = storedData.getItem(`${i} ti`);
 
         if(title === $('title').text()) {
-          $('.comments').append(`<div class='comment'><p class='push-comment-name'>${name}</p><p class='push-comment'>${comment}</p><p class="date">Comment posted at ${date}</p></div>`);
+          $('.comments').append(`<div class='comment'><p class='push-comment-name'>${name}</p><p class='push-comment'>${comment}</p><p class="date">Comment posted at ${date}, ${time}</p></div>`);
         }
       }
     },
