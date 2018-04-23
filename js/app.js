@@ -27,8 +27,14 @@ $(function() {
     },
 
     checkDoubleMail: function(email) {
-      if(model.emails.includes(email) === false) {
-        model.emails.push(email);
+      const number = localStorage.length;
+      const storageArray = Object.entries(localStorage);
+      const emailIsNew = function(element) {
+        return email != element;
+      };
+
+      if(storageArray.some(emailIsNew)) {
+        localStorage.setItem(`${number} mail`, email);
       }
     },
 
@@ -94,6 +100,23 @@ $(function() {
       } else {
         control.loginFalse();
       }
+    },
+
+    getStorageEmails: function() {
+      const regexpEmail = new RegExp(/\d+\smail/);
+      let emails = [];
+
+      for(const item in localStorage) {
+        if(item.match(regexpEmail) != null) {
+          emails.push(localStorage.getItem(item));
+        }
+      }
+
+      control.handleEmailList(emails);
+    },
+
+    getStorageMessages: function() {
+
     }
   };
 
@@ -141,6 +164,18 @@ $(function() {
 
     handleCommentDeletion: function(comments) {
       model.deleteComments(comments);
+    },
+
+    handleStorageEmails: function() {
+      model.getStorageEmails();
+    },
+
+    handleEmailList: function(emails) {
+      view.displayEmailList(emails);
+    },
+
+    handleStorageMessages() {
+      model.getStorageMessages();
     }
   };
 
@@ -155,6 +190,8 @@ $(function() {
       $('#admin-login-button').click(view.login);
       $('#admin-logout-button').click(view.hideAdmin);
       $('#admin-button').click(view.displayAdminFunctions);
+      $('#show-emails-button').click(view.displayEmails);
+      $('#show-messages-button').click(view.displayMessages);
 
       control.getSafedData();
       control.checkLogin();
@@ -224,18 +261,18 @@ $(function() {
 
     calculateTime: function() {
       let now = new Date();
-      let minute = now.getMinutes();
-      let hour = now.getHours();
+      let minutes = now.getMinutes();
+      let hours = now.getHours();
 
-      if(hour < 10) {
-        hour = '0' + hour;
+      if(hours < 10) {
+        hours = `0${hours}`;
       }
 
-      if(minute < 10) {
-        minute = '0' + minute;
+      if(minutes < 10) {
+        minutes = `0${minutes}`;
       }
 
-      now = `${hour}:${minute}`;
+      now = `${hours}:${minutes}`;
       return now;
     },
 
@@ -263,6 +300,7 @@ $(function() {
 
     displayAdmin: function() {
       $('.admin').css('display', 'block');
+      $('.admin-link').css('display', 'inherit');
     },
 
     wrongLogIn: function() {
@@ -310,6 +348,36 @@ $(function() {
       control.handleCommentDeletion(comments);
 
       parentInputs.remove();
+    },
+
+    displayEmails: function() {
+      control.handleStorageEmails();
+    },
+
+    displayEmailList: function(emails) {
+      if($('.lists').children().length === 0 || (!$('.list #mails'))) {
+        $('.lists messages').remove();
+        $('.lists').append('<table id="mails"><tr><th>Emails</th></tr></table>');
+
+        emails.forEach(function(mail) {
+          $('#mails').append(`<tr><td>${mail}</td></tr>`);
+        });
+      }
+    },
+
+    displayMessages: function() {
+      control.handleStorageMessages();
+    },
+
+    displayMessageList: function(messages) {
+      if($('.lists').children().length === 0 || (!$('.list #messages'))) {
+        $('.lists emails').remove();
+        $('.lists').append('<table id="messages"><tr><th>Name</th><th>Email</th><th>Newsletter</th><th>Occasion</th><th>Message</th><th></th></tr></table>');
+
+        messages.forEach(function(message) {
+          $('#mails').append(`<tr><td>${message}</td></tr>`);
+        });
+      }
     }
   };
   control.init();
