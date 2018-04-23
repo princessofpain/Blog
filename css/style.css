@@ -118,7 +118,7 @@ body {
 }
 
 #search-button, #subscribe-button, #contact-button, #admin-login-button,
-	#admin-logout-button, #admin-button, #admin-delete {
+	#admin-logout-button, #admin-button, #admin-delete, #show-messages-button, #show-emails-button {
   width: 80px;
   height: 25px;
   border-radius: 5px;
@@ -195,4 +195,19 @@ body {
 .popular-entries img {
   width: 30%;
   margin-right: 20px;
+}
+
+.admin-link {
+  display: none;
+}
+
+#show-messages-button {
+  width:  40%;
+  margin-bottom: 10%;
+}
+
+#show-emails-button {
+  width: 50%;
+  margin-right: 3%;
+  margin-bottom: 10%;
 }
