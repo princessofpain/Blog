@@ -48,102 +48,36 @@ $(function() {
 
     deleteComments: function(comments) {
       const storageArray = Object.entries(localStorage);
-      // const regexpName = new RegExp(/\d\sn/);
-      // const regexpComment = new RegExp(/\d\sc/);
-      // const regexpDate = new RegExp(/\d\sd/);
-      // const regexpTitle = new RegExp(/\d\st/);
+      const regexpComment = new RegExp(/\d\sc/);
+      let keysAllComments = [];
       let keysToDelete = [];
 
-      // for(let i = 0; i < storageArray.length; i++) {
-      //   if(storageArray[i][0].match(regexpName) != null ||
-      //     storageArray[i][0].match(regexpComment) != null ||
-      //     storageArray[i][0].match(regexpDate) != null ||
-      //     storageArray[i][0].match(regexpTitle) != null)
-      //   {
-      //     keysToDelete.push(storageArray[i]);
-      //   }
-      // }
-
-      for(let a = 0; a < comments.length; a++) {
-        const name = comments[a][1];
-        const comment = comments[a][2];
-        const date = comments[a][3];
-
-        for(let i = 0; i < storageArray.length; i++) {
-          if(storageArray[i][1] === name || comment || date){
-            keysToDelete.push(storageArray[i]);
-          }
+      for(let i = 0; i < storageArray.length; i++) {
+        if(storageArray[i][0].match(regexpComment) != null) {
+          keysAllComments.push(storageArray[i]);
         }
       }
 
+      // delete the checked comments and push the keys into an array
+      comments.forEach(function(comment) {
+        keysAllComments.forEach(function(key) {
+          if(comment === key[1]) {
+            keysToDelete.push(key[0]);
+            localStorage.removeItem(key[0]);
+          }
+        });
+      });
 
-      // comments.forEach(function(comment) {
-      //   for(let i; i < keysToDelete.length; i++) {
-      //     if(keysToDelete[i][1] === comment) {
-      //       localStorage.removeItem(keysToDelete[i][0]);
-      //     }
-      //   }
-      // });
-
-
-      // valuesToCompare.forEach(function(value) {
-      //   if(keysToDelete.includes(value)) {
-      //     for(let i = 0; i < keysToDelete.length; i++) {
-      //       if(keysToDelete[i][1] === value) {
-      //         const key = keysToDelete[i][0];
-      //         localStorage.removeItem(key);
-      //       }
-      //     }
-      //   }
-      // });
-
-      // // comments.forEach(function(comment) {
-      //   slicedNumber = comment[1].slice(0,1);
-
-      //   const regexpKey = (slicedNumber, /\sd/);
-
-      //   for(let i = 0; i < comments.length; i++) {
-      //     if(keysToDelete.includes(regexpKey)) {
-      //       localStorage.removeItem(regexpKey, ' n');
-      //       localStorage.removeItem(regexpKey, ' c');
-      //       localStorage.removeItem(regexpKey, ' t');
-      //       localStorage.removeItem(regexpKey, ' d');
-      //     }
-      //   }
-
-      // });
-
-
-      // comments.forEach(function(comment) {
-      //   const number = comment[1];
-      //   const regexpNumber = new RegExp(number,'\s\S');
-
-      //   keysToDelete.forEach(function(string) {
-      //     if(string[0].match(regexpNumber) =! null){
-      //       localStorage.removeItem(string[0]);
-      //     }
-      //   })
-      // });
-
-      // comments.forEach(function(comment) {
-      //   const commentText = comment[1];
-      //   const number = commentText.slice(0,1);
-      //   for(let i = 0; i < keysToDelete.length; i++) {
-      //     const slicedKey = keysToDelete[i][0].slice(0,1);
-      //     if (number === slicedKey) {
-      //       localStorage.removeItem(keysToDelete[i][0]);
-      //     }
-      //   }
-      // });
-
-      // comments.forEach(function(comment) {
-      //   for(let i = 0; i < keysToDelete.length; i++) {
-      //     if(keysToDelete[i][1] === comment) {
-      //       const key = keysToDelete[i][0];
-      //       localStorage.removeItem(key);
-      //     }
-      //   }
-      // });
+      // identify and delete all entries of the localStorage that are related to the comment
+      keysToDelete.forEach(function(key) {
+        const keyNumber = key.slice(0, 1);
+        storageArray.forEach(function(localKey){
+          const localKeyNumber = localKey[0].slice(0,1);
+          if(keyNumber === localKeyNumber) {
+            localStorage.removeItem(localKey[0]);
+          }
+        });
+      });
     },
 
     setLogin: function(name, password) {
@@ -344,11 +278,13 @@ $(function() {
 
     deleteComments: function() {
       const inputs = $('input:radio:checked');
+      const commentNames = inputs.next();
+      const commentTexts = commentNames.next();
       const parentInputs = inputs.parent();
       let comments = [];
 
-      for(let i = 0; i < parentInputs.length; i++) {
-        comments.push(parentInputs[i].children);
+      for (let commentText of commentTexts) {
+        comments.push(commentText.innerHTML);
       }
 
       control.handleCommentDeletion(comments);
