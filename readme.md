@@ -4,7 +4,7 @@ A web blog filled with placeholder text and images.
 ## Technology
 The web blog was created with HTML5, CSS3 and JavaScript. I used Gulp for automation and NPM as package manager.
 
-##Functionalities
+## Functionalities
 I added a variety of functionalities to the web blog.
 
 * login
