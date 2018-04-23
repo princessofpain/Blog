@@ -189,11 +189,12 @@ $(function() {
       const name = $('#comment-name').val();
       const title = $('title').text();
       const date = view.calculateDate();
+      const time = view.calculateTime();
 
       if($('.comment').length === 0) {
         $('.comments').append(`<div class='comment'><p class='push-comment-name'>${name}</p><p class='push-comment'>${comment}</p><p class="date">${date}</p></div>`);
       } else {
-        $('.comment:first').prepend(`<div class='comment'><p class='push-comment-name'>${name}</p><p class='push-comment'>${comment}</p><p class="date">Comment posted at ${date}</p></div>`);
+        $('.comment:first').prepend(`<div class='comment'><p class='push-comment-name'>${name}</p><p class='push-comment'>${comment}</p><p class="date">Comment posted at ${date}, ${time}</p></div>`);
       }
 
       control.handleComment(comment, name, title, date);
@@ -218,6 +219,23 @@ $(function() {
 
       today = `${day}.${month}.${year}`;
       return today;
+    },
+
+    calculateTime: function() {
+      let now = new Date();
+      let minute = now.getMinutes();
+      let hour = now.getHours();
+
+      if(hour < 10) {
+        hour = '0' + hour;
+      }
+
+      if(minute < 10) {
+        minute = '0' + minute;
+      }
+
+      now = `${hour}:${minute}`;
+      return now;
     },
 
     appendStorageData: function(storedData) {
