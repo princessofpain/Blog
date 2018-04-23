@@ -2,7 +2,10 @@
 A web blog filled with placeholder text and images.
 
 ## Technology
-The web blog was created with HTML5, CSS3 and JavaScript. I used Gulp for automation and NPM as package manager.
+The web blog was created with HTML5, CSS3 and JavaScript (jQuery). I used Gulp for automation and npm as package manager.
+
+* Date API to get the current time and date
+* Local Storage to save, edit, check and display data
 
 ## Functionalities
 I added a variety of functionalities to the web blog.
@@ -19,6 +22,8 @@ I added a variety of functionalities to the web blog.
 I use the local storage to save and edit data. To use the admin functionalities (log in necessary) you can use this login:
 
 name: admin
+
+
 password: 12345
 
 ## How to set up
