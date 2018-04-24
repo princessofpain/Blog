@@ -3,7 +3,7 @@ $(function() {
   //storing all the data in the model
   var model = {
     setContactData: function(name, email, checkbox, occasion, message){
-      const number = localStorage.length;
+      const number = localStorage.length + 1;
       localStorage.setItem(`${number} name`, name);
       localStorage.setItem(`${number} email`, email);
       localStorage.setItem(`${number} newsletter`, checkbox);
@@ -11,8 +11,8 @@ $(function() {
       localStorage.setItem(`${number} message`, message);
 
       // if the checkbox was checked push email in the array for the newsletter
-      if(checkbox === 11) {
-        model.checkDoubleMail();
+      if(checkbox === 1) {
+        model.checkDoubleMail(email);
       }
     },
 
@@ -21,7 +21,7 @@ $(function() {
     },
 
     checkDoubleMail: function(email) {
-      const number = localStorage.length;
+      const number = localStorage.length + 1;
       const storageArray = Object.entries(localStorage);
       const emailIsNew = function(element) {
         return email != element;
@@ -33,7 +33,7 @@ $(function() {
     },
 
     setLocalStorageData: function(comment, name, title, date, time) {
-      let numOfComments = $('.comment').length;
+      let numOfComments = localStorage.length + 1;
 
       localStorage.setItem(`${numOfComments} c`, comment);
       localStorage.setItem(`${numOfComments} n`, name);
@@ -118,13 +118,11 @@ $(function() {
       const regexpMessage = new RegExp(/\d+\smessage/);
       const storageArray = Object.entries(localStorage);
       let localNumber;
-      // let message = [];
       let allMessages = [];
 
       for(const item in localStorage) {
         if(item.match(regexpMessage) != null) {
           localNumber = item.slice(0,2);
-          // const regexpLocalNumber = new RegExp(/\s\D+/);
 
           storageArray.forEach(function(dataPair){
             const keyNumber = dataPair[0].slice(0,2);
@@ -132,7 +130,6 @@ $(function() {
               allMessages.push(dataPair[1]);
             }
           });
-          // allMessages.pus'h(message);
         }
       }
       control.handleMessageList(allMessages);
@@ -328,13 +325,17 @@ $(function() {
     },
 
     displayAdmin: function() {
+      $('.login').last().remove();
       $('.admin').css('display', 'block');
       $('.admin-link').css('display', 'inherit');
+      if($('title').text() === 'Login') {
+        $('.admin').prepend('<p id="admin-message">Please change to the <a href="admin.html">admin area</a> or have a look at the <a href="allArticles.html">articles</a> to use the admin functions.</p>');
+      }
     },
 
     wrongLogIn: function() {
-      const adminDisplayed = $('.admin').css('display');
-      if(!(adminDisplayed === 'block')){
+      // const adminDisplayed = $('.admin').css('display');
+      if($('.login').children().length === 5){
         $('.login').append('<p>Wrong username or password.</p>');
       }
     },
@@ -343,7 +344,7 @@ $(function() {
       $('.admin').css('display', 'none');
       $('input:radio').remove();
       $('.lists').css('display', 'none');
-      $('.admin-link').css('display', 'none');
+      $('admin-link').css('display', 'none');
 
       control.handleLogout();
     },

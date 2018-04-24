@@ -176,7 +176,12 @@
   margin-bottom: 50px;
 }
 
-<<<<<<< HEAD
+#admin-message {
+  font-size: 11pt;
+  line-height: 1.5;
+  margin-bottom: 50px;
+}
+
 .no-delete-button {
   font-size: 11pt;
   line-height: 1.5;
@@ -199,10 +204,13 @@
   margin-top:  40px;
   width:  45%;
   font-size:  9pt;
+  /* word-break:  break-all; */
+  word-wrap:  break-word;
 }
 
 #messages {
-  width:  100%;
+  width:  90%;
+  margin-right: 10px;
 }
 
 #mails, #messages, tr, td, th {
