@@ -6,6 +6,8 @@ The web blog was created with HTML5, CSS3 and JavaScript (jQuery). I used Gulp f
 
 * Date API to get the current time and date
 * Local Storage to save, edit, check and display data
+* Facebook JavaScript SDK (like button)
+* G+ share button
 
 ## Functionalities
 I added a variety of functionalities to the web blog.
