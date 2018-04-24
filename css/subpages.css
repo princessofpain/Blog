@@ -247,8 +247,17 @@
 .social-media-plugins {
   display: flex;
   flex-flow: row wrap;
+  align-items:  stretch;
 }
 
-.fb-like, .share-google {
+.fb-like, .share-google, .share-twitter {
   margin-right: 10px;
+}
+
+.pinterest-save span{
+  vertical-align: bottom;
+}
+
+.gallery .pinterest-save span {
+  margin:  40px 15px;
 }
