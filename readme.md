@@ -16,10 +16,10 @@ I added a variety of functionalities to the web blog.
 * logout
 * add comments
 * delete comments (log in necessary)
-* subscribe for the newsletter (email) *not implemented yet*
+* subscribe for the newsletter (email)
 * animated pictures *not implemented yet*
-* submit private messages *not implemented yet*
-* read private messages (log in necessary) *not implemented yet*
+* submit private messages
+* read private messages (log in necessary)
 
 I use the local storage to save and edit data. To use the admin functionalities (log in necessary) you can use this login:
 
