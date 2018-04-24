@@ -112,24 +112,22 @@ $(function() {
     getStorageMessages: function() {
       const regexpMessage = new RegExp(/\d+\smessage/);
       const storageArray = Object.entries(localStorage);
-      let message = [];
+      let localNumber;
+      // let message = [];
       let allMessages = [];
 
       for(const item in localStorage) {
         if(item.match(regexpMessage) != null) {
-          const localNumber = item.slice(0,1);
-          const regexpLocalNumber = new RegExp(localNumber + /\s\D+/);
-          // storageArray.forEach(function(keyValuePair) {
-          //   if(keyValuePair[0].match(regexpLocalNumber) != null) {
-          //     allMessages.push(keyValuePair);
-          //   }
-          // });
-          storageArray.forEach(function(key){
-            if(key[0].match(regexpLocalNumber) != null) {
-              message.push(key[1]);
+          localNumber = item.slice(0,2);
+          // const regexpLocalNumber = new RegExp(/\s\D+/);
+
+          storageArray.forEach(function(dataPair){
+            const keyNumber = dataPair[0].slice(0,2);
+            if(keyNumber.match(localNumber) != null) {
+              allMessages.push(dataPair[1]);
             }
           });
-          allMessages.push(message);
+          // allMessages.pus'h(message);
         }
       }
       control.handleMessageList(allMessages);
@@ -335,6 +333,7 @@ $(function() {
     hideAdmin: function() {
       $('.admin').css('display', 'none');
       $('input:radio').remove();
+      $('.lists').css('display', 'none');
     },
 
     displayAdminFunctions: function() {
@@ -393,12 +392,12 @@ $(function() {
     displayMessageList: function(messages) {
       $('#mails').remove();
       $('#messages').remove();
-      $('.lists').append('<table id="messages"><tr><th>Name</th><th>Email</th><th>Newsletter</th><th>Occasion</th><th>Message</th></tr></table>');
+      $('.lists').append('<table id="messages"><tr><th>Email</th><th>Message</th><th>Name</th><th>Newsletter</th><th>Occasion</th></tr></table>');
 
-      messages.forEach(function(message) {
-        // $('#messages').append(`<tr><td>${message[0]}</td><td>${message[1]}</td><td>${message[2]}</td><td>${message[3]}</td><td>${message[4]}</td></tr>`);
-        $('#messages').append(`<tr><td>${message}</td></tr>`);
-      });
+      for(let i = 0; i < messages.length; i++){
+        $('#messages').append(`<tr><td>${messages[i]}</td>Message<td>${messages[i + 1]}</td><td>${messages[i + 2]}</td><td>${messages[i + 3]}</td><td>${messages[i + 4]}</td></tr>`);
+        i = i + 4;
+      }
     }
   };
   control.init();
