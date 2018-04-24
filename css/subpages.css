@@ -249,6 +249,6 @@
   flex-flow: row wrap;
 }
 
-.fb-like {
+.fb-like, .share-google {
   margin-right: 10px;
 }
