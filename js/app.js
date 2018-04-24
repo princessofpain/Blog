@@ -96,6 +96,11 @@ $(function() {
       }
     },
 
+    deleteLoginData: function() {
+      localStorage.removeItem('key');
+      localStorage.removeItem('username');
+    },
+
     getStorageEmails: function() {
       const regexpEmail = new RegExp(/\d+\smail/);
       let emails = [];
@@ -174,6 +179,10 @@ $(function() {
 
     loginFalse: function() {
       view.hideAdmin();
+    },
+
+    handleLogout: function() {
+      model.deleteLoginData();
     },
 
     handleCommentDeletion: function(comments) {
@@ -334,6 +343,9 @@ $(function() {
       $('.admin').css('display', 'none');
       $('input:radio').remove();
       $('.lists').css('display', 'none');
+      $('.admin-link').css('display', 'none');
+
+      control.handleLogout();
     },
 
     displayAdminFunctions: function() {
