@@ -162,7 +162,6 @@
 }
 
 #select-occasion {
-  margin-top: 45px;
   margin-bottom: 15px;
 }
 
@@ -211,3 +210,24 @@
   font-size: 11pt;
 }
 
+#contact-data label {
+  display: inline-block;
+  width: 50px;
+  font-size: 11pt;
+}
+
+#contact-name, #contact-email {
+  padding: 2px;
+  margin-left: 10px;
+  margin-top: 15px;
+}
+
+#receive-newsletter, #occasion {
+  margin-bottom: 20px;
+  font-size: 11pt;
+}
+
+#occasion label {
+  font-size: 11pt;
+  margin-right: 5px;
+}

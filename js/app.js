@@ -240,8 +240,7 @@ $(function() {
       $('#contact-name').val('');
       $('#contact-email').val('');
       $('#checkbox-newsletter').checked;
-      $('#select-occasion option').removeAttr('selected');
-      $('#select-occasion option[value="default"]').attr('selected', true);
+      $('#select-occasion').val('');
       $('#contact-text').val('');
     },
 
@@ -398,7 +397,7 @@ $(function() {
 
       messages.forEach(function(message) {
         // $('#messages').append(`<tr><td>${message[0]}</td><td>${message[1]}</td><td>${message[2]}</td><td>${message[3]}</td><td>${message[4]}</td></tr>`);
-        $('#messages').append(`<tr><td>${message}</td></tr>`)
+        $('#messages').append(`<tr><td>${message}</td></tr>`);
       });
     }
   };
