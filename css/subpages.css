@@ -243,3 +243,12 @@
   font-size: 11pt;
   margin-right: 5px;
 }
+
+.social-media-plugins {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.fb-like {
+  margin-right: 10px;
+}
